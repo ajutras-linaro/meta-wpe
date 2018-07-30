@@ -1,0 +1,45 @@
+diff --git a/westeros-compositor.cpp b/westeros-compositor.cpp
+index 39f2d86..b8d3107 100644
+--- a/westeros-compositor.cpp
++++ b/westeros-compositor.cpp
+@@ -7368,6 +7368,10 @@ static void wstPointerCheckFocus( WstPointer *pointer, int32_t x, int32_t y )
+       wl_fixed_t xFixed, yFixed;
+       bool haveRoles= false;
+       WstSurface *surfaceNoRole= 0;
++      struct wl_resource *resource = NULL;
++      struct wl_resource *temp = NULL;
++      struct wl_client *surfaceClient = NULL;
++      bool clientHasListeners = false;
+ 
+       // Identify top-most surface containing the pointer position
+       for ( std::vector<WstSurface*>::reverse_iterator it= compositor->surfaces.rbegin(); 
+@@ -7410,7 +7414,18 @@ static void wstPointerCheckFocus( WstPointer *pointer, int32_t x, int32_t y )
+             }
+             else
+             {
+-               if ( !surfaceNoRole )
++               surfaceClient = wl_resource_get_client(surface->resource);
++               clientHasListeners = false;
++               // Iterate resourceList to find a client which has registered a listener
++               wl_resource_for_each_safe(resource, temp, &pointer->resourceList)
++               {
++                   if (wl_resource_get_client(resource) == surfaceClient)
++                   {
++                       clientHasListeners = true;
++                       break;
++                   }
++               }
++               if (!surfaceNoRole && clientHasListeners)
+                {
+                   surfaceNoRole= surface;
+                }
+@@ -7430,7 +7445,8 @@ static void wstPointerCheckFocus( WstPointer *pointer, int32_t x, int32_t y )
+          surface= surfaceNoRole;
+       }
+       
+-      if ( pointer->focus != surface )
++      // Only try to set focus if surface is not NULL
++      if (surface && pointer->focus != surface)
+       {
+          xFixed= wl_fixed_from_int( x-sx );
+          yFixed= wl_fixed_from_int( y-sy );
