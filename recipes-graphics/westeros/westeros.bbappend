@@ -45,13 +45,13 @@ PACKAGECONFIG_remove_mx8 = "xdgv4 x11"
 PACKAGECONFIG_append_mx8 = " xdgv5"
 
 do_compile_prepend_mx8() {
-   ln -sf libEGL.so ${STAGING_DIR_TARGET}/${libdir}/libwayland-egl.so
+#   ln -sf libEGL.so ${STAGING_DIR_TARGET}/${libdir}/libwayland-egl.so
 }
 
 do_install_append_mx8() {
    # wayland-egl library softlink pointing to EGL library
-   rm ${STAGING_DIR_TARGET}/${libdir}/libwayland-egl.so
-   ln -sf libEGL.so ${D}/${libdir}/libwayland-egl.so
+#   rm ${STAGING_DIR_TARGET}/${libdir}/libwayland-egl.so
+#   ln -sf libEGL.so ${D}/${libdir}/libwayland-egl.so
 
    # enable cursor on launch
    sed -i -e 's/render_gl.so.0/render_gl.so.0 --enableCursor/g' ${D}/${bindir}/westeros-init
