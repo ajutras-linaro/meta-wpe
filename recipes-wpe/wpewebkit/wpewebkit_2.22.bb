@@ -8,6 +8,8 @@ SRC_URI = "git://github.com/WebPlatformForEmbedded/WPEWebKit.git;branch=wpe-2.22
 
 DEPENDS += "libgcrypt"
 PACKAGECONFIG_append = " webcrypto"
+PACKAGECONFIG_append = " debug"
+PACKAGECONFIG_append = " logs"
 
 FILES_${PN} += "${libdir}/wpe-webkit-0.1/injected-bundle/libWPEInjectedBundle.so"
 FILES_${PN}-web-inspector-plugin += "${libdir}/wpe-webkit-0.1/libWPEWebInspectorResources.so"
