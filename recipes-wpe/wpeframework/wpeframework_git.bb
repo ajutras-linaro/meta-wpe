@@ -28,7 +28,7 @@ WPEFRAMEWORK_PERSISTENT_PATH = "/home/root"
 WPEFRAMEWORK_SYSTEM_PREFIX = "OE"
 
 PACKAGECONFIG ?= " \
-    release \
+    debug \
     ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', 'bluetooth', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opencdm', 'opencdm', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'provisionproxy', 'provisionproxy', '', d)} \
