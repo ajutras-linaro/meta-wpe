@@ -18,6 +18,7 @@ SRC_URI = "git://github.com/WebPlatformForEmbedded/WPEFramework.git \
            file://wpeframework-init \
            file://wpeframework.service.in \
            file://0001-Thread.cpp-Include-limits.h-for-PTHREAD_STACK_MIN-de.patch \
+           file://0002-compositorclient-Implement-a-Wayland-Weston-abstract.patch \
            "
 SRCREV = "7214bcfcf984de5703f54ec9e129be1a65e16a8d"
 
@@ -93,6 +94,7 @@ EXTRA_OECMAKE += " \
     -DPERSISTENT_PATH=${WPEFRAMEWORK_PERSISTENT_PATH} \
     -DSYSTEM_PREFIX=${WPEFRAMEWORK_SYSTEM_PREFIX} \
     -DPLUGIN_COMPOSITOR_IMPLEMENTATION=${WPE_COMPOSITOR_IMPL} \
+    -DPLUGIN_COMPOSITOR_SUB_IMPLEMENTATION=${WPE_COMPOSITOR_SUB_IMPL} \
     -DPYTHON_EXECUTABLE=${STAGING_BINDIR_NATIVE}/python-native/python \
 "
 
