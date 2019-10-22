@@ -83,7 +83,7 @@ PACKAGECONFIG[gst_httpsrc] = "-DUSE_GSTREAMER_WEBKIT_HTTP_SRC=ON,,"
 PACKAGECONFIG[gst_holepunch] = "-DUSE_HOLE_PUNCH_GSTREAMER=ON,,"
 
 EXTRA_OECMAKE += " \
-    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_BUILD_TYPE=Debug \
     -DCMAKE_COLOR_MAKEFILE=OFF \
     -DEXPORT_DEPRECATED_WEBKIT2_C_API=ON \
     -DBUILD_SHARED_LIBS=ON \
@@ -100,7 +100,7 @@ EXTRA_OECMAKE += " \
 EXTRANATIVEPATH += "chrpath-native"
 
 # don't build debug
-FULL_OPTIMIZATION_remove = "-g"
+#FULL_OPTIMIZATION_remove = "-g"
 
 # JSC JIT on ARMv7 is better supported with Thumb2 instruction set.
 ARM_INSTRUCTION_SET_armv7a = "thumb"
