@@ -1,0 +1,26 @@
+From 5935f2c592cafd29aec970924ec440e99621676c Mon Sep 17 00:00:00 2001
+From: Alexandre Jutras <alexandre.jutras@nxp.com>
+Date: Thu, 24 Oct 2019 14:03:46 -0400
+Subject: [PATCH 2/2] Weston: Disable full screen
+
+Signed-off-by: Alexandre Jutras <alexandre.jutras@nxp.com>
+---
+ Source/compositorclient/Wayland/Weston.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Source/compositorclient/Wayland/Weston.cpp b/Source/compositorclient/Wayland/Weston.cpp
+index 8edf5f7..ce5a994 100644
+--- a/Source/compositorclient/Wayland/Weston.cpp
++++ b/Source/compositorclient/Wayland/Weston.cpp
+@@ -948,7 +948,7 @@ namespace Wayland {
+             surface->_wait_for_configure = true;
+             wl_surface_commit(surface->_surface);
+ 
+-            zxdg_toplevel_v6_set_fullscreen(surface->_xdg_toplevel, NULL);
++//            zxdg_toplevel_v6_set_fullscreen(surface->_xdg_toplevel, NULL);
+         }
+ 
+         // Wait till we are fully registered.
+-- 
+2.7.4
+
