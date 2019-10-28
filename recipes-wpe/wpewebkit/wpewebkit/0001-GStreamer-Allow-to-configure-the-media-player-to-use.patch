@@ -1,0 +1,49 @@
+From 778855045898740ad3cb8ffed245d4a769ac9d09 Mon Sep 17 00:00:00 2001
+From: Alexandre Jutras <36512998+ajutras-linaro@users.noreply.github.com>
+Date: Fri, 25 Oct 2019 10:13:55 -0400
+Subject: [PATCH] [GStreamer] Allow to configure the media player to use
+ waylandsink (#634)
+
+Signed-off-by: Alexandre Jutras <alexandre.jutras@linaro.org>
+---
+ .../platform/graphics/gstreamer/MediaPlayerPrivateGStreamerBase.cpp   | 4 +++-
+ Source/cmake/GStreamerDefinitions.cmake                               | 1 +
+ Source/cmake/GStreamerDependencies.cmake                              | 1 +
+ 3 files changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/Source/WebCore/platform/graphics/gstreamer/MediaPlayerPrivateGStreamerBase.cpp b/Source/WebCore/platform/graphics/gstreamer/MediaPlayerPrivateGStreamerBase.cpp
+index 52090bf..567f402 100644
+--- a/Source/WebCore/platform/graphics/gstreamer/MediaPlayerPrivateGStreamerBase.cpp
++++ b/Source/WebCore/platform/graphics/gstreamer/MediaPlayerPrivateGStreamerBase.cpp
+@@ -1311,7 +1311,9 @@ GstElement* MediaPlayerPrivateGStreamerBase::createVideoSink()
+     m_videoSink = gst_element_factory_make( "brcmvideosink", nullptr);
+ #endif
+ 
+-#if USE(GSTREAMER_GL)
++#if USE(WAYLAND_SINK)
++    m_videoSink = gst_element_factory_make( "waylandsink", nullptr);
++#elif USE(GSTREAMER_GL)
+     if (m_renderingCanBeAccelerated)
+         m_videoSink = createVideoSinkGL();
+ #endif
+diff --git a/Source/cmake/GStreamerDefinitions.cmake b/Source/cmake/GStreamerDefinitions.cmake
+index c4df6e4..46c82e5 100644
+--- a/Source/cmake/GStreamerDefinitions.cmake
++++ b/Source/cmake/GStreamerDefinitions.cmake
+@@ -9,3 +9,4 @@ WEBKIT_OPTION_DEFINE(USE_GSTREAMER_WEBKIT_HTTP_SRC "Whether to enable support fo
+ WEBKIT_OPTION_DEFINE(USE_GSTREAMER_MPEGTS "Whether to enable support for MPEG-TS" PRIVATE OFF)
+ WEBKIT_OPTION_DEFINE(USE_WESTEROS_SINK "Westeros-Sink to be used as video-sink for GStreamer video player" PUBLIC OFF)
+ WEBKIT_OPTION_DEFINE(USE_FUSION_SINK "Fusion-Sink to be used as video-sink for GStreamer video player" PUBLIC OFF)
++WEBKIT_OPTION_DEFINE(USE_WAYLAND_SINK "Wayland-Sink to be used as video-sink for GStreamer video player" PUBLIC OFF)
+diff --git a/Source/cmake/GStreamerDependencies.cmake b/Source/cmake/GStreamerDependencies.cmake
+index 3b25180..eb045f5 100644
+--- a/Source/cmake/GStreamerDependencies.cmake
++++ b/Source/cmake/GStreamerDependencies.cmake
+@@ -6,3 +6,4 @@ WEBKIT_OPTION_DEPEND(USE_GSTREAMER_MPEGTS ENABLE_VIDEO)
+ WEBKIT_OPTION_DEPEND(USE_GSTREAMER_WEBKIT_HTTP_SRC USE_GSTREAMER)
+ WEBKIT_OPTION_DEPEND(USE_WESTEROS_SINK USE_GSTREAMER)
+ WEBKIT_OPTION_DEPEND(USE_FUSION_SINK USE_GSTREAMER)
++WEBKIT_OPTION_DEPEND(USE_WAYLAND_SINK USE_GSTREAMER)
+-- 
+2.7.4
+

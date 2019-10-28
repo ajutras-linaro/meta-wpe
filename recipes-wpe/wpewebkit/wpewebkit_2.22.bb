@@ -4,7 +4,9 @@ PV = "2.22+git${SRCPV}"
 PR = "r0"
 
 SRCREV ?= "2c1e49c291a3a67c25b4a508c59a5c3e52c89421"
-SRC_URI = "git://github.com/WebPlatformForEmbedded/WPEWebKit.git;branch=wpe-2.22"
+SRC_URI = "git://github.com/WebPlatformForEmbedded/WPEWebKit.git;branch=wpe-2.22 \
+           file://0001-GStreamer-Allow-to-configure-the-media-player-to-use.patch \
+          "
 
 DEPENDS += "libgcrypt"
 PACKAGECONFIG_append = " webcrypto"
