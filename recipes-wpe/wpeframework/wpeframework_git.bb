@@ -18,10 +18,8 @@ SRC_URI = "git://github.com/WebPlatformForEmbedded/WPEFramework.git \
            file://wpeframework-init \
            file://wpeframework.service.in \
            file://0001-Thread.cpp-Include-limits.h-for-PTHREAD_STACK_MIN-de.patch \
-           file://0001-compositorclient-Implement-a-Wayland-Weston-abstract.patch \
-           file://0002-Weston-Disable-full-screen.patch \
           "
-SRCREV = "fd71c5591dd93cb82cc4483bbb8420f8313b476a"
+SRCREV = "7214bcfcf984de5703f54ec9e129be1a65e16a8d"
 
 inherit cmake pkgconfig systemd update-rc.d
 
