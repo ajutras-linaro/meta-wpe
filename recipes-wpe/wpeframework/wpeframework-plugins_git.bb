@@ -5,14 +5,14 @@ PR = "r1"
 
 require include/wpeframework-plugins.inc
 
-SRC_URI = "git://github.com/WebPlatformForEmbedded/WPEFrameworkPlugins.git;protocol=git;branch=master \
+SRC_URI = "git:///home/ajutras/dev/nxp/modules/WPEFrameworkPlugins;protocol=file;branch=sdp \
            file://0001-WebKitBrowser-Add-Time-to-dependencies.patch \
            file://index.html \
            file://osmc-devinput-remote.json \
            file://0001-WebKitBrowser-Default-to-1080p-instead-of-720p.patch \
            "
 
-SRCREV = "d25e61d8c274fa2004d7c87780e4d491b1f82093"
+SRCREV = "${AUTOREV}"
 
 # ----------------------------------------------------------------------------
 

@@ -6,10 +6,9 @@ require include/wpeframework-plugins.inc
 
 DEPENDS += " playready"
 
-SRC_URI = "git://git@github.com/WebPlatformForEmbedded/OCDM-Playready.git;protocol=https;branch=master \
-           file://0001-wpeframework-ocdm-playready-linaro-playready-support.patch \
+SRC_URI = "git:///home/ajutras/dev/nxp/modules/OCDM-Playready;protocol=file;branch=sdp \
 "
-SRCREV = "023a064e3e87de8a9934394fd835f57f37bbcb10"
+SRCREV = "${AUTOREV}"
 
 FILES_${PN} = "${datadir}/WPEFramework/OCDM/*.drm"
 
